@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_12_224839) do
+ActiveRecord::Schema.define(version: 2020_10_12_230143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2020_10_12_224839) do
     t.boolean "isMobile"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_phone_numbers", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "phone_number_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["phone_number_id"], name: "index_user_phone_numbers_on_phone_number_id"
+    t.index ["user_id"], name: "index_user_phone_numbers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
